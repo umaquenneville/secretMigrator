@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+    <!--
+
+   (from http://docs.spring.io/spring-boot/docs/current/reference/html/howto-logging.html)
+
+    If you look at that base.xml in the spring-boot jar, you will see that it uses some useful System properties
+    which the LoggingSystem takes care of creating for you. These are:
+
+       ${PID} the current process ID.
+       ${LOG_FILE} if logging.file was set in Boot’s external configuration.
+       ${LOG_PATH} if logging.path was set (representing a directory for log files to live in).
+       ${LOG_EXCEPTION_CONVERSION_WORD} if logging.exception-conversion-word was set in Boot’s external configuration.
+
+
+    Note - we only want to specify logging.file or logging.path - if both are specified spring will ignore these
+      properties.
+
+    -->
+
+    <!-- Configure the Sentry appender, overriding the logging threshold to the WARN level -->
+
+    <logger name="org.springframework" level="INFO"/>
+    <logger name="org.springframework.web" level="WARN"/>
+    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="org.springframework.cache" level="WARN"/>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        
+    </root>
+
+
+    
+</configuration>
